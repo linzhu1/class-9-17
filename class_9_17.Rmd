@@ -22,7 +22,7 @@ congress_age %>%
   filter(party %in% c("R", "D")) %>% 
   group_by(year, party) %>%
   summarize(average = mean(age)) %>% 
-  ggplot(aes(x=year, y=average, group=party, color=party)) + geom_line() + labs(title = "Average Age of Members of Congress", subtitle = "At start of term, 1947-2013", source = "538 R Package") + scale_x_continuous() 
+  ggplot(aes(x=year, y=average, group=party, color=party)) + geom_line() + labs(title = "Average Age of Members of Congress", subtitle = "At start of term, 1947-2013", source = "538 R Package") + theme_fivethirtyeight() + scale_color_fivethirtyeight()
 
 ```
 
