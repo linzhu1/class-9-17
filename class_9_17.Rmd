@@ -1,0 +1,32 @@
+---
+title: "congress_age_file"
+author: "Lin Zhu"
+date: "September 17, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+  knitr::opts_chunk$set(echo = FALSE)
+  library(fivethirtyeight)
+  library(tidyverse)
+  library(ggplot2)
+  library(ggthemes)
+```
+
+Find avg age per year by party:
+```{r}
+data("congress_age")
+
+congress_age %>% 
+  mutate(year = format(termstart, "%Y")) %>%
+  filter(party %in% c("R", "D")) %>% 
+  group_by(year, party) %>%
+  summarize(average = mean(age)) %>% 
+  ggplot(aes(x=year, y=average, group=party, color=party)) + geom_line() + labs(title = "Average Age of Members of Congress", subtitle = "At start of term, 1947-2013", source = "538 R Package") + scale_x_continuous() 
+
+```
+
+
+
+
+
